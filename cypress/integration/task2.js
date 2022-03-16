@@ -1,10 +1,9 @@
 /// <reference types = "cypress" />
 import AmazonMainPage from '../support/page_objects/amazonMainPage';
-
-// import config from '../support/configCypress';
+import inputData from '../fixtures/inputData.json';
 
 describe('Test with Page Objects', () => {
-    
+
     const mainPage = new AmazonMainPage();
 
     beforeEach('Open main page', () => {
@@ -12,9 +11,8 @@ describe('Test with Page Objects', () => {
     })
 
     it('Search test', () => {
-    //     // const searchItem = config.searchItem;
-    //     // console.log(searchItem);
-        mainPage.searchProduct('one percenter revolution');
+        const searchItem = inputData.searchItem;
+        mainPage.searchProduct(searchItem);
     })
 
     it('Dropdown menu test', () => {
