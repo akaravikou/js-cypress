@@ -1,32 +1,25 @@
+import Header from '../components/header';
+import ProductsGrid from '../components/productsGrid';
+import Footer from '../components/footer';
 
 class AmazonMainPage {
 
     constructor() {
-        this.searchInput = '#twotabsearchtextbox';
-        this.searchButton = '#nav-search-submit-button';
-        this.hamburgerMenuButton = '#nav-hamburger-menu';
+        this.header = new Header();
+        this.productsGrid = new ProductsGrid();
+        this.footer = new Footer();    
     }
 
-    fillSearchInput(searchItem) {
-        cy.get(this.searchInput).type(searchItem);
+    getHeader() {
+        return this.header
     }
 
-    clickSearchButton() {
-        cy.get(this.searchButton).click();
+    getProductsGrid() {
+        return this.productsGrid
     }
 
-    clickHamburgerMenuButton() {
-        cy.get(this.hamburgerMenuButton).click();
-    }
-
-    searchProduct(searchItem) {
-        this.fillSearchInput(searchItem);
-        this.clickSearchButton();
-    }
-
-    useDropdownMenu() {
-        this.clickHamburgerMenuButton();
-        cy.get('#hmenu-content').contains('#FoundItOnAmazon').click();
+    getFooter() {
+        return this.footer
     }
 }
 

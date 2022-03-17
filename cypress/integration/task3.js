@@ -11,11 +11,10 @@ describe('Test with Page Objects', () => {
     })
 
     it('Search test', () => {
-        const searchItem = inputData.searchItem;
-        mainPage.searchProduct(searchItem);
+        mainPage.getHeader().searchProduct(inputData.searchItem);
     })
 
     it('Dropdown menu test', () => {
-        mainPage.useDropdownMenu();
+        mainPage.getHeader().useDropdownMenu();
     })
 })
