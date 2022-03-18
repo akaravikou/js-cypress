@@ -8,7 +8,7 @@ class Footer {
     }
 
     validateContent() {
-        cy.get(this.footerLogo).click();
+        cy.get(this.footerLogo).should('be.visible');
     }
 }
 

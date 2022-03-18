@@ -1,10 +1,13 @@
 import ProductItem from '../components/productItem';
+import PriceFilter from '../components/priceFilter';
+import BrandFilter from './brandFilter';
 
 class SearchResultBlock{
 
     constructor(){
-        this.leftNavigationBar = '[class="sg-col-4-of-12 s-matching-dir sg-col-4-of-16 sg-col sg-col-4-of-20"]';
-        this.signInButton = '.action-inner';
+        this.priceFilter = new PriceFilter();
+        this.brandFilter = new BrandFilter();
+        this.signInButton = '[class = "action-inner"]';
         this.products = new ProductItem();
     }
 
@@ -14,6 +17,14 @@ class SearchResultBlock{
 
     getProducts(){
         return this.products;
+    }
+
+    getPriceFilter(){
+        return this.priceFilter;
+    }
+
+    getBrandFilter(){
+        return this.brandFilter;
     }
 }
 

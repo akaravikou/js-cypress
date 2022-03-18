@@ -1,4 +1,7 @@
 {
-  "searchItem": "One Percenter Revolution",
-  "leftDropdownMenuSearchString": "#FoundItOnAmazon"
+  "searchItem": "Laptop",
+  "leftDropdownMenuSearchString": "#FoundItOnAmazon",
+  "minPriceValue": 100,
+  "maxPriceValue": 1000,
+  "brandName": "Apple"
 }

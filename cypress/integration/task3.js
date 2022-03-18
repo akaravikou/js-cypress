@@ -16,15 +16,25 @@ describe('Test with Page Objects', () => {
         cy.visit('/')
     })
 
-    // it('Search result test', () => {
-    //     mainPage.getHeader().searchProduct(inputData.searchItem);
-    //     searchPage.getSearchResultBlock().getProducts().getProductName().should('contain', inputData.searchItem);
-    // })
+    it.only('Search result and filtering by price test', () => {
+        mainPage.getHeader().searchProduct(inputData.searchItem);
+        searchPage.getSearchResultBlock().getProducts().getProductName().should('contain', inputData.searchItem);
+        searchPage.getSearchResultBlock().getPriceFilter().searchProductByPriceRange(inputData.minPriceValue, inputData.maxPriceValue);
+        searchPage.getSearchResultBlock().getProducts().getProductPrice().each(actPrice => {
+            const price = Number(actPrice.text().substring(1, actPrice.text().indexOf('.')));
+            expect(price).greaterThan(inputData.minPriceValue);
+            expect(price).lessThan(inputData.maxPriceValue);
+        })
+        searchPage.getSearchResultBlock().getBrandFilter().clickBrandNameField(inputData.brandName);
+        searchPage.getSearchResultBlock().getProducts().getProductName().each(brand => {
+           expect(brand).contain(inputData.brandName);
+        })
+    })
 
-    // it('Dropdown menu test', () => {
-    //     mainPage.getHeader().useDropdownMenu(inputData.leftDropdownMenuSearchString);
-    //     foundItOnAmazonPage.getPageTitle().should('contain', inputData.leftDropdownMenuSearchString);
-    // })
+    it('Dropdown menu test', () => {
+        mainPage.getHeader().useDropdownMenu(inputData.leftDropdownMenuSearchString);
+        foundItOnAmazonPage.getPageTitle().should('contain', inputData.leftDropdownMenuSearchString);
+    })
 
     it("Footer's validate content", () => {
         mainPage.getFooter().validateContent();
