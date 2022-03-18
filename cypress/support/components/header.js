@@ -1,3 +1,4 @@
+
 class Header {
 
     constructor() {
@@ -5,6 +6,7 @@ class Header {
         this.searchInput = '#twotabsearchtextbox';
         this.searchButton = '#nav-search-submit-button';
         this.hamburgerMenuButton = '#nav-hamburger-menu';
+        this.leftDropdownMenu = '#hmenu-content';
     }
 
     validateContent() {
@@ -12,7 +14,8 @@ class Header {
     }
 
     fillSearchInput(searchItem) {
-        cy.get(this.searchInput).type(searchItem);
+        cy.get('[id="glow-toaster-body"]')
+        cy.get(this.searchInput).type(searchItem)//, {force:true});
     }
 
     clickSearchButton() {
@@ -28,9 +31,9 @@ class Header {
         this.clickSearchButton();
     }
 
-    useDropdownMenu() {
+    useDropdownMenu(leftDropdownMenuSearchString) {
         this.clickHamburgerMenuButton();
-        cy.get('#hmenu-content').contains('#FoundItOnAmazon').click();
+        cy.get(this.leftDropdownMenu).contains(leftDropdownMenuSearchString).click();
     }
 }
 
