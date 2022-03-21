@@ -8,6 +8,7 @@ class SearchResultPage{
         this.header = new Header();
         this.searchResultBlock = new SearchResultBlock();
         this.footer = new Footer();
+        this.loadSpinner = '.a-spinner-wrapper>:first-child';
     }
 
     getHeader(){
@@ -20,6 +21,10 @@ class SearchResultPage{
 
     getFooter(){
         return this.footer
+    }
+
+    getLoadSpinner(){
+        return this.loadSpinner;
     }
 }
 

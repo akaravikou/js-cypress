@@ -16,7 +16,7 @@ describe('Test with Page Objects', () => {
         cy.visit('/')
     })
 
-    it.only('Search result and filtering by price test', () => {
+    it('Search result and filtering by price test', () => {
         mainPage.getHeader().searchProduct(inputData.searchItem);
         searchPage.getSearchResultBlock().getProducts().getProductName().should('contain', inputData.searchItem);
         searchPage.getSearchResultBlock().getPriceFilter().searchProductByPriceRange(inputData.minPriceValue, inputData.maxPriceValue);
@@ -38,5 +38,11 @@ describe('Test with Page Objects', () => {
 
     it("Footer's validate content", () => {
         mainPage.getFooter().validateContent();
+    })
+
+    it.only('Wait until loading spinner disappear', () => {
+        mainPage.getHeader().searchProduct(inputData.searchItem);
+        searchPage.getSearchResultBlock().getBrandFilter().clickBrandNameField(inputData.brandName);
+        cy.isElementExist(searchPage.getLoadSpinner);        
     })
 })

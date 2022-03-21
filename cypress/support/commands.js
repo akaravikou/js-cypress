@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('isElementExist', (elmt) => {
+    expect(elmt).to.not.equal('')
+    cy.get('body', { timeout: 5000 }).then(($el) => {
+        if ($el.has(elmt).length > 0) {
+            cy.get(elmt, {timeout: 3000}).should('not.be.visible');
+        } else {
+            cy.log("Loading spinner not visible")
+        }
+    })
+})
