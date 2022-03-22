@@ -1,17 +1,23 @@
 /// <reference types = "cypress" />
 
+import AmazonMainPage from '../support/page_objects/amazonMainPage';
+import LoginPage from '../support/page_objects/loginPage';
 
-describe('Test API with interception', () => {
+import inputData from '../fixtures/inputData.json';
 
-    it.only('Verify request', () => {
+describe('Test API using cy.intercept()', () => {
+
+    const mainPage = new AmazonMainPage();
+    const loginPage = new LoginPage();
+
+    it('Verify email value in request', () => {
         
-        cy.intercept ('POST', 'https://www.amazon.com/ap/signin').as('getRequest')
+        cy.intercept('POST', '/ap/signin').as('request')
 
         cy.visit('/');
-        cy.get('#nav-link-accountList').click();
-        cy.get('#ap_email').type('nightspirit@tut.by');
-        cy.get('span #continue').click();
+        mainPage.getHeader().clickSignInButton();
+        loginPage.inputEmail(inputData.email);
 
-        cy.wait('@getRequest').its('request.body').should('include', 'email=nightspirit');
-})
+        cy.wait('@request').its('request.body').should('include', inputData.validateEmail);
+    })
 })

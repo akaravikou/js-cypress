@@ -43,6 +43,9 @@ describe('Test with Page Objects', () => {
     it.only('Wait until loading spinner disappear', () => {
         mainPage.getHeader().searchProduct(inputData.searchItem);
         searchPage.getSearchResultBlock().getBrandFilter().clickBrandNameField(inputData.brandName);
-        cy.isElementExist(searchPage.getLoadSpinner);        
+        cy.isElementExist(searchPage.getLoadSpinner);
+        searchPage.getSearchResultBlock().getProducts().getProductName().each(brand => {
+            expect(brand).contain(inputData.brandName);        
     })
+})
 })

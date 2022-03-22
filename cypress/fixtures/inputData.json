@@ -3,5 +3,7 @@
   "leftDropdownMenuSearchString": "#FoundItOnAmazon",
   "minPriceValue": 100,
   "maxPriceValue": 1000,
-  "brandName": "Apple"
+  "brandName": "Apple",
+  "email": "nightspirit@tut.by",
+  "validateEmail": "email=nightspirit"
 }

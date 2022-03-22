@@ -7,6 +7,7 @@ class Header {
         this.searchButton = '#nav-search-submit-button';
         this.hamburgerMenuButton = '#nav-hamburger-menu';
         this.leftDropdownMenu = '#hmenu-content';
+        this.signInButton = '#nav-link-accountList';
     }
 
     validateContent() {
@@ -34,6 +35,10 @@ class Header {
     useDropdownMenu(leftDropdownMenuSearchString) {
         this.clickHamburgerMenuButton();
         cy.get(this.leftDropdownMenu).contains(leftDropdownMenuSearchString).click();
+    }
+
+    clickSignInButton() {
+        cy.get(this.signInButton).click();
     }
 }
 
