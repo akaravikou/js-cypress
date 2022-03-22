@@ -5,11 +5,13 @@ describe('Test API with interception', () => {
 
     it.only('Verify request', () => {
         
-        cy.intercept ('https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fref%3Dnav_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&', request =>{
+        cy.intercept ('POST', 'https://www.amazon.com/ap/signin').as('getRequest')
 
-        cy.get('[class = "a-button-input"]').click();
-  
-    }).as('info');   
+        cy.visit('/');
+        cy.get('#nav-link-accountList').click();
+        cy.get('#ap_email').type('nightspirit@tut.by');
+        cy.get('span #continue').click();
+
+        cy.wait('@getRequest').its('request.body').should('include', 'email=nightspirit');
 })
-
 })
