@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('isElementExist', (elmt) => {
+Cypress.Commands.add('isElementVisible', (elmt) => {
     expect(elmt).to.not.equal('')
     cy.get('body', { timeout: 5000 }).then(($el) => {
         if ($el.has(elmt).length > 0) {
